@@ -6,6 +6,12 @@ A robust backend server built with **Node.js**, **Express**, and **MongoDB**, pr
 
 ---
 
+## 🚀 Live Demo
+
+🌐 [Backend Live API](#) https://loan-app-mbcy.onrender.com/api/
+
+---
+
 ## 🛠 Features
 * **User authentication** (JWT, role-based)
 * **Loan application, approval, and repayment management**

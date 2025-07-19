@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const redis = require('redis');
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,14 @@ mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
 }).then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection error:', err));
+
+// Redis connection
+const redisClient = redis.createClient({
+    url: process.env.REDIS_URL
+});
+redisClient.on('connect', () => console.log('Redis connected'));
+redisClient.on('error', (err) => console.error('Redis error:', err));
+(async () => { try { await redisClient.connect(); } catch (e) { console.error(e); } })();
 
 const authRoutes = require('./routes/authRoutes');
 const loanRoutes = require('./routes/loanRoutes');
